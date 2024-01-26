@@ -4,23 +4,16 @@ namespace Assets.Scripts
 {
     public class PlayerController : MonoBehaviour
     {
-        public float MoveSpeed = 2f;
-        public float SpeedChangeRate = 12.5f;
+        public float MoveSpeed = 600f;
+        public float SpeedChangeRate = 15f;
 
         private Rigidbody2D _rigidBody;
-        private InputControlsInputs _input;
 
         private float _speed;
     
         void Start()
         {
             _rigidBody = GetComponent<Rigidbody2D>();
-            _input = GetComponent<InputControlsInputs>();
-        }
-
-        private void FixedUpdate()
-        {
-            Move();
         }
 
         public void Trigger()
@@ -28,16 +21,16 @@ namespace Assets.Scripts
             Debug.Log("Trigger!");
         }
 
-        private void Move()
+        public void Move(Vector2 byAmount)
         {
-            float targetSpeed = _input.move == Vector2.zero
+            float targetSpeed = byAmount == Vector2.zero
                 ? 0.0f
                 : MoveSpeed;
 
             float currentHorizontalSpeed = _rigidBody.velocity.magnitude;
 
             float speedOffset = 0.1f;
-            float inputMagnitude = _input.move.magnitude;
+            float inputMagnitude = byAmount.magnitude;
 
             if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
             {
@@ -53,7 +46,7 @@ namespace Assets.Scripts
             }
 
             // set player's velocity
-            _rigidBody.AddForce(_input.move * _speed);
+            _rigidBody.AddForce(byAmount * _speed);
         }
     }
 }

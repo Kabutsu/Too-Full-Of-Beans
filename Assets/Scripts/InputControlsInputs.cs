@@ -5,23 +5,17 @@ namespace Assets.Scripts
 {
     public class InputControlsInputs : MonoBehaviour
     {
-        public Vector2 move;
+        public Vector2 moveLeftStick;
+        public Vector2 moveRightStick;
 
-        private PlayerController _playerController;
-
-        private void Start()
+        public void OnMoveLeftStick(InputValue value)
         {
-            _playerController = GetComponent<PlayerController>();
+            moveLeftStick = value.Get<Vector2>();
         }
 
-        public void OnMove(InputValue value)
+        public void OnMoveRightStick(InputValue value)
         {
-            move = value.Get<Vector2>();
-        }
-
-        public void OnTrigger(InputValue _)
-        {
-            _playerController.Trigger();
+            moveRightStick = value.Get<Vector2>();
         }
     }
 }

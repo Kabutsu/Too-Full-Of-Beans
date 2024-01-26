@@ -6,7 +6,7 @@
             "id": "f9391634-7381-43e4-b43b-9ee218efd492",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "MoveLeftStick",
                     "type": "Value",
                     "id": "2f8c9187-91e8-49d4-ab6e-e1c7dd47c5f8",
                     "expectedControlType": "Vector2",
@@ -15,9 +15,27 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Trigger",
+                    "name": "MoveRightStick",
+                    "type": "Value",
+                    "id": "9f0bbda0-8be2-45ac-bf95-cb2e1483d812",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "LeftTrigger",
                     "type": "Button",
                     "id": "578e3c9a-0758-44a4-bc5b-272a428410ec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightTrigger",
+                    "type": "Button",
+                    "id": "db154109-4c74-4a44-8ad4-fd2594521fcd",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -32,7 +50,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Move",
+                    "action": "MoveLeftStick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -43,55 +61,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Trigger",
+                    "action": "LeftTrigger",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Player2",
-            "id": "aafb98c5-2555-469d-a398-8b798dbdc7d8",
-            "actions": [
-                {
-                    "name": "Move",
-                    "type": "Value",
-                    "id": "5fbbde85-f010-4e64-833c-26aa2bc3cbc4",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 },
                 {
-                    "name": "Trigger",
-                    "type": "Button",
-                    "id": "bd770015-d63c-4b43-9fca-8c1afb138766",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
                     "name": "",
-                    "id": "ebc9acd6-b96c-48b5-ae8e-e4a9cbfc33b5",
+                    "id": "12c09da4-b077-4d01-9284-7e22f849500c",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Move",
+                    "action": "MoveRightStick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "aaaa7d96-ab2e-46d6-b3f8-e3df8b166103",
+                    "id": "2a718114-701b-4e40-98bc-b21b2d7e296d",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Trigger",
+                    "groups": "Gamepad",
+                    "action": "RightTrigger",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
