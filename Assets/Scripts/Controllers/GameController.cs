@@ -36,9 +36,11 @@ namespace Assets.Scripts.Controllers
 
             _players.Item1.MaxLeft = -MaxRightAbs;
             _players.Item1.MaxRight = -MaxLeftAbs;
+            _players.Item1.TrumpetController = LeftTrumpet.GetComponent<TrumpetController>();
 
             _players.Item2.MaxLeft = MaxLeftAbs;
             _players.Item2.MaxRight = MaxRightAbs;
+            _players.Item2.TrumpetController = RightTrumpet.GetComponent<TrumpetController>();
 
             _noteGenerator = GetComponentInChildren<NoteGenerator>();
 

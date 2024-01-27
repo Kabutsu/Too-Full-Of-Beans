@@ -26,9 +26,9 @@ namespace Assets.Scripts.Utils
             return score switch
             {
                 Constants.Scores.Diss => 1,
-                Constants.Scores.FarOut => UnityEngine.Random.Range(1, 3),
-                Constants.Scores.Crunk => UnityEngine.Random.Range(2, 5),
-                _ => UnityEngine.Random.Range(4, 7),
+                Constants.Scores.FarOut => UnityEngine.Random.Range(2, 5),
+                Constants.Scores.Crunk => UnityEngine.Random.Range(4, 7),
+                _ => UnityEngine.Random.Range(6, 10),
             };
         }
 

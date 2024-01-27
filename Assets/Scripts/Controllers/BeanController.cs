@@ -25,6 +25,8 @@ namespace Assets.Scripts.Controllers
 
             _collider.isTrigger = true;
 
+            if (transform.position.x > 0) xForce = -xForce;
+
             float multiplier = Random.Range(
                 minMultiplier,
                 maxMultiplier);

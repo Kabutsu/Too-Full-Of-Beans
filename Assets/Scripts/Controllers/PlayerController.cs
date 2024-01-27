@@ -11,6 +11,7 @@ namespace Assets.Scripts.Controllers
 
         public float MaxLeft { get; set; }
         public float MaxRight { get; set; }
+        public TrumpetController TrumpetController { get; set; }
 
         private Rigidbody2D _rigidBody;
         private AudioSource _audio;
@@ -51,7 +52,7 @@ namespace Assets.Scripts.Controllers
                         .GetComponent<NoteController>()
                         .Pop(score);
 
-                    // TrumpetController.FireBeans(score);
+                    TrumpetController.FireBeans(Helpers.ScoreToBeanSpawn(score));
                 }
             }
         }
