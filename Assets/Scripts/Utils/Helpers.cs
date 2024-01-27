@@ -2,6 +2,8 @@ using System.ComponentModel;
 using System.Reflection;
 using System;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Assets.Scripts.Utils
 {
@@ -52,6 +54,36 @@ namespace Assets.Scripts.Utils
             // Add spaces between PascalCase words
             string output = string.Join(" ", System.Text.RegularExpressions.Regex.Split(input, @"(?<!^)(?=[A-Z])"));
             return output;
+        }
+
+        public static IEnumerable<Note> NormalizeJSONPitch(IEnumerable<Note> notes)
+        {
+            List<Note> normalizedNotes = new();
+
+            // Find the minimum and maximum pitch values in the notes
+            float minPitch = float.MaxValue;
+            float maxPitch = float.MinValue;
+            foreach (var note in notes)
+            {
+                if (note.Pitch < minPitch)
+                    minPitch = note.Pitch;
+                if (note.Pitch > maxPitch)
+                    maxPitch = note.Pitch;
+            }
+
+            // Normalize each pitch value to be between 1 and 8
+            foreach (var note in notes)
+            {
+                float normalizedPitch = Remap(note.Pitch, minPitch, maxPitch, 1f, 8f);
+                normalizedNotes.Add(new Note { Pitch = normalizedPitch, Time = note.Time });
+            }
+
+            return normalizedNotes;
+        }
+
+        private static float Remap(float value, float from1, float to1, float from2, float to2)
+        {
+            return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
         }
     }
 }
