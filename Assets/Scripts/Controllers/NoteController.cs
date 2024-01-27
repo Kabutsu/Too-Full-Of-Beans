@@ -6,7 +6,7 @@ namespace Assets.Scripts.Controllers
     public class NoteController : MonoBehaviour
     {
         [SerializeField]
-        private float _speed;
+        private float _speed = 4.0f;
 
         private SpriteRenderer _spriteRenderer;
         private Camera _mainCamera;

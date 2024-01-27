@@ -18,6 +18,7 @@ namespace Assets.Scripts.Controllers
         private float MaxRightAbs = 8.0f;
 
         private Tuple<PlayerController, PlayerController> _players;
+        private NoteGenerator _noteGenerator;
         private InputControlsInputs _input;
 
         private void Start()
@@ -31,6 +32,11 @@ namespace Assets.Scripts.Controllers
 
             _players.Item2.MaxLeft = MaxLeftAbs;
             _players.Item2.MaxRight = MaxRightAbs;
+
+            _noteGenerator = GetComponentInChildren<NoteGenerator>();
+
+            _noteGenerator.MaxX = MaxRightAbs;
+            _noteGenerator.MinX = MaxLeftAbs;
 
             _input = GetComponent<InputControlsInputs>();
         }
