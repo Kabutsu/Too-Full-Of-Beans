@@ -2,7 +2,6 @@ using System.ComponentModel;
 using System.Reflection;
 using System;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.Utils
@@ -20,6 +19,17 @@ namespace Assets.Scripts.Utils
             if (distance >= 0.01f) return Constants.Scores.Crunk;
 
             return Constants.Scores.Tubular;
+        }
+
+        public static int ScoreToBeanSpawn(Constants.Scores score)
+        {
+            return score switch
+            {
+                Constants.Scores.Diss => 1,
+                Constants.Scores.FarOut => UnityEngine.Random.Range(2, 5),
+                Constants.Scores.Crunk => UnityEngine.Random.Range(4, 7),
+                _ => UnityEngine.Random.Range(6, 10),
+            };
         }
 
         public static string GetName(Enum value)

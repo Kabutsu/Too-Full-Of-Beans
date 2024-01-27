@@ -13,9 +13,14 @@ namespace Assets.Scripts.Controllers
         private GameObject PlayerTwo;
 
         [SerializeField]
-        private float MaxLeftAbs = 1.0f;
+        private GameObject LeftTrumpet;
         [SerializeField]
-        private float MaxRightAbs = 8.0f;
+        private GameObject RightTrumpet;
+
+        [SerializeField]
+        private float MaxLeftAbs = 1.5f;
+        [SerializeField]
+        private float MaxRightAbs = 7.5f;
 
         private Tuple<PlayerController, PlayerController> _players;
         private NoteGenerator _noteGenerator;
@@ -31,9 +36,11 @@ namespace Assets.Scripts.Controllers
 
             _players.Item1.MaxLeft = -MaxRightAbs;
             _players.Item1.MaxRight = -MaxLeftAbs;
+            _players.Item1.TrumpetController = LeftTrumpet.GetComponent<TrumpetController>();
 
             _players.Item2.MaxLeft = MaxLeftAbs;
             _players.Item2.MaxRight = MaxRightAbs;
+            _players.Item2.TrumpetController = RightTrumpet.GetComponent<TrumpetController>();
 
             _noteGenerator = GetComponentInChildren<NoteGenerator>();
 

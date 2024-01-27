@@ -8,9 +8,12 @@ namespace Assets.Scripts.Controllers
     {
         public float MoveSpeed = 580f;
         public float SpeedChangeRate = 20f;
+        public Vector2 TriggerRumble = new(0.25f, 0.25f);
+        public Vector2 MatchRumble = new(0.75f, 0.25f);
 
         public float MaxLeft { get; set; }
         public float MaxRight { get; set; }
+        public TrumpetController TrumpetController { get; set; }
 
         private Rigidbody2D _rigidBody;
         private AudioSource _audio;
@@ -27,12 +30,14 @@ namespace Assets.Scripts.Controllers
 
         public void OnTriggerEnter2D(Collider2D collision)
         {
-            _collisions.Add(collision);
+            if (collision.gameObject.CompareTag(Tags.Note))
+                _collisions.Add(collision);
         }
 
         public void OnTriggerExit2D(Collider2D collision)
         {
-            _collisions.Remove(collision);
+            if (_collisions.Contains(collision))  
+                _collisions.Remove(collision);
         }
 
         public void Trigger(bool playSound)
@@ -45,10 +50,13 @@ namespace Assets.Scripts.Controllers
                 for(int i = 0; i < _collisions.Count; i++)
                 {
                     var collider = _collisions[i];
+                    var score = collider.CalculateScore(transform);
 
                     collider.gameObject
                         .GetComponent<NoteController>()
-                        .Pop(collider.CalculateScore(transform));
+                        .Pop(score);
+
+                    TrumpetController.FireBeans(Helpers.ScoreToBeanSpawn(score));
                 }
             }
         }
