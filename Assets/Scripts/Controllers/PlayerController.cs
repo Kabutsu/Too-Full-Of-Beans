@@ -6,13 +6,14 @@ namespace Assets.Scripts.Controllers
 {
     public class PlayerController : MonoBehaviour
     {
-        public float MoveSpeed = 600f;
-        public float SpeedChangeRate = 15f;
+        public float MoveSpeed = 580f;
+        public float SpeedChangeRate = 20f;
 
         public float MaxLeft { get; set; }
         public float MaxRight { get; set; }
 
         private Rigidbody2D _rigidBody;
+        private AudioSource _audio;
 
         private float _speed;
 
@@ -21,6 +22,7 @@ namespace Assets.Scripts.Controllers
         void Start()
         {
             _rigidBody = GetComponent<Rigidbody2D>();
+            _audio = GetComponent<AudioSource>();
         }
 
         public void OnTriggerEnter2D(Collider2D collision)
@@ -33,8 +35,11 @@ namespace Assets.Scripts.Controllers
             _collisions.Remove(collision);
         }
 
-        public void Trigger()
+        public void Trigger(bool playSound)
         {
+            _audio.pitch = Helpers.Remap(Mathf.Abs(transform.position.x), 1f, 8f, 0.7f, 1.7f);
+            if (playSound) _audio.Play();
+
             if (_collisions.Count > 0)
             {
                 for(int i = 0; i < _collisions.Count; i++)

@@ -23,6 +23,8 @@ namespace Assets.Scripts.Controllers
 
         private void Start()
         {
+            Application.targetFrameRate = -1;
+
             _players = new Tuple<PlayerController, PlayerController>(
                 PlayerOne.GetComponent<PlayerController>(),
                 PlayerTwo.GetComponent<PlayerController>());
@@ -43,18 +45,19 @@ namespace Assets.Scripts.Controllers
 
         void FixedUpdate()
         {
+
             _players.Item1.Move(_input.moveLeftStick);
             _players.Item2.Move(_input.moveRightStick);
         }
 
         public void OnLeftTrigger(InputValue value)
         {
-            _players.Item1.Trigger();
+            _players.Item1.Trigger(value.isPressed);
         }
 
         public void OnRightTrigger(InputValue value)
         {
-            _players.Item2.Trigger();
+            _players.Item2.Trigger(value.isPressed);
         }
     }
 }
