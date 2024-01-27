@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
@@ -19,7 +20,7 @@ namespace Assets.Scripts.Utils
             var track = JsonConvert.DeserializeObject<XmlTrack>(
                 xmlObject["score-partwise"]["part"].ToString());
 
-            var tempo = float.Parse(track.Measure.First().Direction.Sound.Tempo);
+            var tempo = float.Parse(track.Measure.First().Direction?.Sound.Tempo ?? "90.00");
             var noteLength = (60f / tempo) * TIME_MULTIPLIER;
 
             var notesList = new List<Note>();
@@ -35,16 +36,15 @@ namespace Assets.Scripts.Utils
                         {
                             Pitch = note.Pitch.ToMidiNumber(),
                             Time = currentTime,
+                            Length = (note.Pitch.Step == "half" || note.Pitch.Step == "quarter")
+                                ? note.Type.InSeconds(noteLength)
+                                : null,
                         });
                     }
 
                     currentTime += note.Type.InSeconds(noteLength);
                 }
             }
-
-            //Debug.Log(JsonConvert.SerializeObject(track));
-            //Debug.Log(track.Measure.First().Direction?.Sound.Tempo);
-            //Debug.Log($"Tempo: {float.Parse(track.Measure.First().Direction?.Sound.Tempo)}");
 
             return notesList;
         }
@@ -87,6 +87,9 @@ namespace Assets.Scripts.Utils
     class XmlMeasure
     {
         public XmlDirection? Direction { get; set; } = null;
+
+        [JsonProperty("note")]
+        [JsonConverter(typeof(NoteConverter))]
         public ICollection<XmlNote> Note { get; set; }
     }
 
@@ -113,5 +116,32 @@ namespace Assets.Scripts.Utils
         public string Step { get; set; }
         public int Octave { get; set; }
         public int? Alter { get; set; } = null;
+    }
+
+    public class NoteConverter : JsonConverter
+    {
+        public override bool CanConvert(Type objectType)
+        {
+            return (objectType == typeof(XmlNote));
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            var token = JToken.Load(reader);
+            if (token.Type == JTokenType.Array)
+            {
+                return token.ToObject<List<XmlNote>>();
+            }
+            else
+            {
+                var note = token.ToObject<XmlNote>();
+                return new List<XmlNote> { note };
+            }
+        }
+
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

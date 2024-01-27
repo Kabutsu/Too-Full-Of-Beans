@@ -2003,8 +2003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 744b96d11a48dce478e4850a1cab375a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrackJson: {fileID: 4900000, guid: b0658dc39d2ffbc4aba1317ac208ba33, type: 3}
-  TrackXML: {fileID: 4900000, guid: d80a4c5443ed86246bb95ba231fca51f, type: 3}
+  TrackXML: {fileID: 4900000, guid: 09511ef3c73e6dd4189f1a15a356e932, type: 3}
   NoteObject: {fileID: 8883776939126239490, guid: e4f0c9d0eb84bbc41bc2ea19f93ca5a8, type: 3}
 --- !u!1001 &2479682633932512939
 PrefabInstance:
