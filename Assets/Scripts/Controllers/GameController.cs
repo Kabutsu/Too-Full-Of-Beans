@@ -21,16 +21,10 @@ namespace Assets.Scripts.Controllers
         private NoteGenerator _noteGenerator;
         private InputControlsInputs _input;
 
-        private AudioSource _playerOneAudio;
-        private AudioSource _playerTwoAudio;
-
-        private bool _leftTriggerHeld = false;
-        private bool _rightTriggerHeld = false;
-
-        private InputAction _leftAction;
-
         private void Start()
         {
+            Application.targetFrameRate = -1;
+
             _players = new Tuple<PlayerController, PlayerController>(
                 PlayerOne.GetComponent<PlayerController>(),
                 PlayerTwo.GetComponent<PlayerController>());
@@ -41,23 +35,12 @@ namespace Assets.Scripts.Controllers
             _players.Item2.MaxLeft = MaxLeftAbs;
             _players.Item2.MaxRight = MaxRightAbs;
 
-            _playerOneAudio = PlayerOne.GetComponentInChildren<AudioSource>();
-            _playerTwoAudio = PlayerTwo.GetComponentInChildren<AudioSource>();
-
             _noteGenerator = GetComponentInChildren<NoteGenerator>();
 
             _noteGenerator.MaxX = MaxRightAbs;
             _noteGenerator.MinX = MaxLeftAbs;
 
             _input = GetComponent<InputControlsInputs>();
-        }
-
-        private void Update()
-        {
-            //if (_leftTriggerHeld && !_playerOneAudio.isPlaying)
-            //{
-            //    _playerOneAudio.Play();
-            //}
         }
 
         void FixedUpdate()
@@ -69,33 +52,12 @@ namespace Assets.Scripts.Controllers
 
         public void OnLeftTrigger(InputValue value)
         {
-            if (value.isPressed)
-            {
-                _playerOneAudio.Play();
-            }
-
-            _players.Item1.Trigger();
+            _players.Item1.Trigger(value.isPressed);
         }
 
         public void OnRightTrigger(InputValue value)
         {
-            if (value.isPressed)
-            {
-                _playerTwoAudio.Play();
-            }
-
-            _players.Item2.Trigger();
+            _players.Item2.Trigger(value.isPressed);
         }
-
-        //public void OnLeftTriggerHold(InputValue value)
-        //{
-        //    _leftTriggerHeld = value.isPressed;
-
-        //    if (value.isPressed && !_playerOneAudio.isPlaying)
-        //    {
-        //        _playerOneAudio.Play();
-        //    }
-        //    else if (!value.isPressed) _playerOneAudio.Stop();
-        //}
     }
 }
