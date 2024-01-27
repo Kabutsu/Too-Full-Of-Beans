@@ -28,5 +28,6 @@ namespace Assets.Scripts.Utils
         public const string PlayerOne = nameof(PlayerOne);
         public const string PlayerTwo = nameof(PlayerTwo);
         public const string Divider = nameof(Divider);
+        public const string Note = nameof(Note);
     }
 }

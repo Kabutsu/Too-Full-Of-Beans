@@ -97,5 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a1dbe9c64535a4b97e9355e169a2ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FireRumble: {x: 0.5, y: 3}
   Bean: {fileID: 8447688363525780455, guid: 5a6b5e594eb4709418d2afee05b587ec, type: 3}
   TimeBetweenSpawns: 0.1

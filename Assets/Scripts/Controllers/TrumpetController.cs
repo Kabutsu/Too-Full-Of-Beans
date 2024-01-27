@@ -1,15 +1,18 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Controllers
 {
     public class TrumpetController : MonoBehaviour
     {
+        public Vector2 FireRumble = new(0.5f, 3f);
+
         [SerializeField]
         private GameObject Bean;
 
         [SerializeField]
-        private float TimeBetweenSpawns = 0.1f;
+        private float TimeBetweenSpawns = 0.125f;
         private int BeansToSpawn = 0;
         private bool IsSpawning = false;
 
@@ -31,6 +34,11 @@ namespace Assets.Scripts.Controllers
             {
                 Instantiate(Bean, transform.position, transform.rotation);
                 BeansToSpawn--;
+
+                Gamepad.current.SetMotorSpeeds(FireRumble.x, FireRumble.y);
+                yield return new WaitForSeconds(TimeBetweenSpawns / 1.5f);
+                Gamepad.current.ResetHaptics();
+
                 yield return new WaitForSeconds(TimeBetweenSpawns);
             }
 
