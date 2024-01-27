@@ -6,8 +6,8 @@ namespace Assets.Scripts.Controllers
 {
     public class PlayerController : MonoBehaviour
     {
-        public float MoveSpeed = 580f;
-        public float SpeedChangeRate = 20f;
+        public float MoveSpeed = 630f;
+        public float SpeedChangeRate = 25f;
         public Vector2 TriggerRumble = new(0.25f, 0.25f);
         public Vector2 MatchRumble = new(0.75f, 0.25f);
 
