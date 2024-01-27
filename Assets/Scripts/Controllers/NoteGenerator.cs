@@ -36,11 +36,6 @@ namespace Assets.Scripts.Controllers
             StartCoroutine(OutputNotes());
         }
 
-        void Update()
-        {
-
-        }
-
         public void Generate(float x)
         {
             Instantiate(

@@ -2,7 +2,6 @@ using System.ComponentModel;
 using System.Reflection;
 using System;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.Utils
@@ -20,6 +19,17 @@ namespace Assets.Scripts.Utils
             if (distance >= 0.01f) return Constants.Scores.Crunk;
 
             return Constants.Scores.Tubular;
+        }
+
+        public static float ScoreToMoveAmount(Constants.Scores score)
+        {
+            return score switch
+            {
+                Constants.Scores.Diss => 0.15f,
+                Constants.Scores.FarOut => 0.25f,
+                Constants.Scores.Crunk => 0.4f,
+                _ => 0.65f,
+            };
         }
 
         public static string GetName(Enum value)

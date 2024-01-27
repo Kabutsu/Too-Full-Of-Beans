@@ -11,6 +11,7 @@ namespace Assets.Scripts.Controllers
 
         public float MaxLeft { get; set; }
         public float MaxRight { get; set; }
+        public BeanController BigBean { get; set; }
 
         private Rigidbody2D _rigidBody;
         private AudioSource _audio;
@@ -45,10 +46,13 @@ namespace Assets.Scripts.Controllers
                 for(int i = 0; i < _collisions.Count; i++)
                 {
                     var collider = _collisions[i];
+                    var score = collider.CalculateScore(transform);
 
                     collider.gameObject
                         .GetComponent<NoteController>()
-                        .Pop(collider.CalculateScore(transform));
+                        .Pop(score);
+
+                    BigBean.Creep(Helpers.ScoreToMoveAmount(score));
                 }
             }
         }
