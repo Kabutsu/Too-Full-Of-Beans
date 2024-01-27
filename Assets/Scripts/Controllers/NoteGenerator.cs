@@ -18,6 +18,7 @@ namespace Assets.Scripts.Controllers
         private GameObject NoteObject;
 
         private float y;
+        private float StartTime;
 
         private IEnumerable<Note> notes = new List<Note>();
 
@@ -29,6 +30,8 @@ namespace Assets.Scripts.Controllers
             notes = JsonConvert.DeserializeObject<IEnumerable<Note>>(fileText);
 
             notes = Helpers.NormalizeJSONPitch(notes);
+
+            StartTime = Time.time;
 
             StartCoroutine(OutputNotes());
         }
@@ -55,10 +58,8 @@ namespace Assets.Scripts.Controllers
         {
             foreach (var note in notes)
             {
-                float startTime = Time.time;
-
                 // Wait until the game time matches the note's time
-                while (Time.time - startTime < note.Time)
+                while (Time.time - StartTime < note.Time)
                 {
                     yield return null;
                 }
