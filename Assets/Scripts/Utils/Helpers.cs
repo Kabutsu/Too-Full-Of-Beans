@@ -21,14 +21,14 @@ namespace Assets.Scripts.Utils
             return Constants.Scores.Tubular;
         }
 
-        public static float ScoreToMoveAmount(Constants.Scores score)
+        public static int ScoreToBeanSpawn(Constants.Scores score)
         {
             return score switch
             {
-                Constants.Scores.Diss => 0.15f,
-                Constants.Scores.FarOut => 0.25f,
-                Constants.Scores.Crunk => 0.4f,
-                _ => 0.65f,
+                Constants.Scores.Diss => 1,
+                Constants.Scores.FarOut => UnityEngine.Random.Range(1, 3),
+                Constants.Scores.Crunk => UnityEngine.Random.Range(2, 5),
+                _ => UnityEngine.Random.Range(4, 7),
             };
         }
 

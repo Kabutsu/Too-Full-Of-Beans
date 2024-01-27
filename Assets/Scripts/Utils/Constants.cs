@@ -22,4 +22,11 @@ namespace Assets.Scripts.Utils
             Tubular
         }
     }
+
+    public static class Tags
+    {
+        public const string PlayerOne = nameof(PlayerOne);
+        public const string PlayerTwo = nameof(PlayerTwo);
+        public const string Divider = nameof(Divider);
+    }
 }
