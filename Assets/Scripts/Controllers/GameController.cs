@@ -1,8 +1,9 @@
 using System;
+using Assets.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Controllers
 {
     public class GameController : MonoBehaviour
     {
@@ -10,6 +11,11 @@ namespace Assets.Scripts
         private GameObject PlayerOne;
         [SerializeField]
         private GameObject PlayerTwo;
+
+        [SerializeField]
+        private float MaxLeftAbs = 1.0f;
+        [SerializeField]
+        private float MaxRightAbs = 8.0f;
 
         private Tuple<PlayerController, PlayerController> _players;
         private InputControlsInputs _input;
@@ -19,6 +25,12 @@ namespace Assets.Scripts
             _players = new Tuple<PlayerController, PlayerController>(
                 PlayerOne.GetComponent<PlayerController>(),
                 PlayerTwo.GetComponent<PlayerController>());
+
+            _players.Item1.MaxLeft = -MaxRightAbs;
+            _players.Item1.MaxRight = -MaxLeftAbs;
+
+            _players.Item2.MaxLeft = MaxLeftAbs;
+            _players.Item2.MaxRight = MaxRightAbs;
 
             _input = GetComponent<InputControlsInputs>();
         }

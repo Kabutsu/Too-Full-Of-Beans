@@ -1,28 +1,61 @@
+using Assets.Scripts.Utils;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Controllers
 {
     public class PlayerController : MonoBehaviour
     {
         public float MoveSpeed = 600f;
         public float SpeedChangeRate = 15f;
 
+        public float MaxLeft { get; set; }
+        public float MaxRight { get; set; }
+
         private Rigidbody2D _rigidBody;
 
         private float _speed;
+
+        private List<Collider2D> _collisions = new();
     
         void Start()
         {
             _rigidBody = GetComponent<Rigidbody2D>();
         }
 
+        public void OnTriggerEnter2D(Collider2D collision)
+        {
+            _collisions.Add(collision);
+        }
+
+        public void OnTriggerExit2D(Collider2D collision)
+        {
+            _collisions.Remove(collision);
+        }
+
         public void Trigger()
         {
-            Debug.Log("Trigger!");
+            if (_collisions.Count > 0)
+            {
+                for(int i = 0; i < _collisions.Count; i++)
+                {
+                    var collider = _collisions[i];
+
+                    collider.gameObject
+                        .GetComponent<NoteController>()
+                        .Pop(collider.CalculateScore(transform));
+                }
+            }
         }
 
         public void Move(Vector2 byAmount)
         {
+            if ((byAmount.x < 0 && transform.position.x <= MaxLeft)
+                || (byAmount.x > 0 && transform.position.x >= MaxRight))
+            {
+                return;
+            }
+
             float targetSpeed = byAmount == Vector2.zero
                 ? 0.0f
                 : MoveSpeed;

@@ -200,6 +200,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerOne: {fileID: 140011310}
   PlayerTwo: {fileID: 1627118996}
+  MaxLeftAbs: 1
+  MaxRightAbs: 8.5
 --- !u!4 &104391456
 Transform:
   m_ObjectHideFlags: 0
@@ -372,7 +374,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -484,7 +486,7 @@ GameObject:
   - component: {fileID: 441777562}
   m_Layer: 0
   m_Name: Note
-  m_TagString: Untagged
+  m_TagString: Note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -501,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01d4b30de74007488d83fbc946cce25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
+  _speed: 2
 --- !u!58 &441777563
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -803,8 +805,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 360186407}
+  - {fileID: 441777565}
   - {fileID: 140011312}
   - {fileID: 1627119001}
   - {fileID: 104391456}
-  - {fileID: 441777565}
   - {fileID: 1883834579}
