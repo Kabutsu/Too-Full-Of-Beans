@@ -12,7 +12,7 @@ namespace Assets.Scripts.Controllers
         public float MaxX { get; set; }
         public float MinX { get; set; }
 
-        public TextAsset TrackJson;
+        public TextAsset TrackXML;
 
         [SerializeField]
         private GameObject NoteObject;
@@ -26,10 +26,7 @@ namespace Assets.Scripts.Controllers
         {
             y = transform.position.y;
 
-            string fileText = TrackJson.text;
-            notes = JsonConvert.DeserializeObject<IEnumerable<Note>>(fileText);
-
-            notes = Helpers.NormalizeJSONPitch(notes);
+            notes = Helpers.NormalizeJSONPitch(MusicReader.Read(TrackXML.text));
 
             StartTime = Time.time;
 

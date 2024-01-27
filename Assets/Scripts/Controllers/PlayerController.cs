@@ -1,4 +1,5 @@
 using Assets.Scripts.Utils;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,8 +7,8 @@ namespace Assets.Scripts.Controllers
 {
     public class PlayerController : MonoBehaviour
     {
-        public float MoveSpeed = 580f;
-        public float SpeedChangeRate = 20f;
+        public float MoveSpeed = 630f;
+        public float SpeedChangeRate = 25f;
         public Vector2 TriggerRumble = new(0.25f, 0.25f);
         public Vector2 MatchRumble = new(0.75f, 0.25f);
 
@@ -19,13 +20,21 @@ namespace Assets.Scripts.Controllers
         private AudioSource _audio;
 
         private float _speed;
+        private float _audioFadeoutTime = 0.25f;
 
+        private Coroutine fadingCoroutine = null;
         private List<Collider2D> _collisions = new();
     
         void Start()
         {
             _rigidBody = GetComponent<Rigidbody2D>();
             _audio = GetComponent<AudioSource>();
+        }
+
+        void Update()
+        {
+            if (fadingCoroutine == null)
+                _audio.pitch = Helpers.Remap(Mathf.Abs(transform.position.x), 1f, 8f, 0.7f, 1.7f);
         }
 
         public void OnTriggerEnter2D(Collider2D collision)
@@ -42,8 +51,22 @@ namespace Assets.Scripts.Controllers
 
         public void Trigger(bool playSound)
         {
-            _audio.pitch = Helpers.Remap(Mathf.Abs(transform.position.x), 1f, 8f, 0.7f, 1.7f);
-            if (playSound) _audio.Play();
+
+            if (playSound)
+            {
+                if (fadingCoroutine != null)
+                {
+                    StopCoroutine(fadingCoroutine);
+                    fadingCoroutine = null;
+                }
+
+                _audio.volume = 1;
+                _audio.Play();
+            }
+            else
+            {
+                fadingCoroutine = StartCoroutine(FadeOutAudio());
+            }
 
             if (_collisions.Count > 0)
             {
@@ -93,6 +116,19 @@ namespace Assets.Scripts.Controllers
 
             // set player's velocity
             _rigidBody.AddForce(byAmount * _speed);
+        }
+
+        private IEnumerator FadeOutAudio()
+        {
+            float startTime = Time.time;
+
+            while (Time.time < startTime + _audioFadeoutTime)
+            {
+                _audio.volume = Mathf.Lerp(1.0f, 0f, (Time.time - startTime) / _audioFadeoutTime);
+                yield return null;
+            }
+
+            _audio.Stop();
         }
     }
 }
