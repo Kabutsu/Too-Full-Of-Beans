@@ -28,6 +28,11 @@ namespace Assets.Scripts.Controllers
             _audio = GetComponent<AudioSource>();
         }
 
+        void Update()
+        {
+            _audio.pitch = Helpers.Remap(Mathf.Abs(transform.position.x), 1f, 8f, 0.7f, 1.7f);
+        }
+
         public void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag(Tags.Note))
@@ -42,8 +47,12 @@ namespace Assets.Scripts.Controllers
 
         public void Trigger(bool playSound)
         {
-            _audio.pitch = Helpers.Remap(Mathf.Abs(transform.position.x), 1f, 8f, 0.7f, 1.7f);
-            if (playSound) _audio.Play();
+
+            if (playSound)
+            {
+                _audio.Play();
+            }
+            else _audio.Stop();
 
             if (_collisions.Count > 0)
             {

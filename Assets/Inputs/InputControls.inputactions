@@ -38,17 +38,8 @@
                     "id": "db154109-4c74-4a44-8ad4-fd2594521fcd",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "LeftTriggerHold",
-                    "type": "Value",
-                    "id": "486848c7-3ea4-474a-886e-bf973a7629d2",
-                    "expectedControlType": "Analog",
-                    "processors": "",
-                    "interactions": "Hold(duration=1.401298E-45,pressPoint=0.1)",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -76,17 +67,6 @@
                 },
                 {
                     "name": "",
-                    "id": "cac6ea5a-bedd-404f-9ea0-bd9ce28d9c6a",
-                    "path": "<XInputController>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "LeftTrigger",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "12c09da4-b077-4d01-9284-7e22f849500c",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
@@ -104,17 +84,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "RightTrigger",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9afc72b2-7f38-4768-aece-5c944cae6c67",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "LeftTriggerHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
