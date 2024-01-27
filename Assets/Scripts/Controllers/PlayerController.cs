@@ -1,4 +1,5 @@
 using Assets.Scripts.Utils;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +20,9 @@ namespace Assets.Scripts.Controllers
         private AudioSource _audio;
 
         private float _speed;
+        private float _audioFadeoutTime = 0.25f;
 
+        private Coroutine fadingCoroutine = null;
         private List<Collider2D> _collisions = new();
     
         void Start()
@@ -30,7 +33,8 @@ namespace Assets.Scripts.Controllers
 
         void Update()
         {
-            _audio.pitch = Helpers.Remap(Mathf.Abs(transform.position.x), 1f, 8f, 0.7f, 1.7f);
+            if (fadingCoroutine == null)
+                _audio.pitch = Helpers.Remap(Mathf.Abs(transform.position.x), 1f, 8f, 0.7f, 1.7f);
         }
 
         public void OnTriggerEnter2D(Collider2D collision)
@@ -50,9 +54,19 @@ namespace Assets.Scripts.Controllers
 
             if (playSound)
             {
+                if (fadingCoroutine != null)
+                {
+                    StopCoroutine(fadingCoroutine);
+                    fadingCoroutine = null;
+                }
+
+                _audio.volume = 1;
                 _audio.Play();
             }
-            else _audio.Stop();
+            else
+            {
+                fadingCoroutine = StartCoroutine(FadeOutAudio());
+            }
 
             if (_collisions.Count > 0)
             {
@@ -102,6 +116,19 @@ namespace Assets.Scripts.Controllers
 
             // set player's velocity
             _rigidBody.AddForce(byAmount * _speed);
+        }
+
+        private IEnumerator FadeOutAudio()
+        {
+            float startTime = Time.time;
+
+            while (Time.time < startTime + _audioFadeoutTime)
+            {
+                _audio.volume = Mathf.Lerp(1.0f, 0f, (Time.time - startTime) / _audioFadeoutTime);
+                yield return null;
+            }
+
+            _audio.Stop();
         }
     }
 }
