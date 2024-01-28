@@ -19,6 +19,7 @@ namespace Assets.Scripts.Controllers
 
         private float y;
         private float StartTime;
+        private int zIndex = -2;
 
         private IEnumerable<Note> notes = new List<Note>();
 
@@ -37,12 +38,12 @@ namespace Assets.Scripts.Controllers
         {
             Instantiate(
                 NoteObject,
-                new Vector2(x, y),
+                new Vector3(x, y, zIndex),
                 transform.rotation);
 
             Instantiate(
                 NoteObject,
-                new Vector2(-x, y),
+                new Vector3(-x, y, zIndex),
                 transform.rotation);
         }
 

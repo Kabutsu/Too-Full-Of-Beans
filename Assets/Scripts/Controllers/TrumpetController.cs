@@ -16,6 +16,14 @@ namespace Assets.Scripts.Controllers
         private int BeansToSpawn = 0;
         private bool IsSpawning = false;
 
+        private Vector3 BeanSpawnCoordinates = new(8.35f, 1.5f, -3f);
+
+        private void Start()
+        {
+            if (transform.position.x < 0)
+                BeanSpawnCoordinates.x = -BeanSpawnCoordinates.x;
+        }
+
         public void FireBeans(int numberOfBeans)
         {
             BeansToSpawn += numberOfBeans;
@@ -32,7 +40,7 @@ namespace Assets.Scripts.Controllers
 
             while (BeansToSpawn > 0)
             {
-                Instantiate(Bean, transform.position, transform.rotation);
+                Instantiate(Bean, BeanSpawnCoordinates, transform.rotation);
                 BeansToSpawn--;
 
                 Gamepad.current.SetMotorSpeeds(FireRumble.x, FireRumble.y);
