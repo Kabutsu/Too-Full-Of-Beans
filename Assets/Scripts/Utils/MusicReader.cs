@@ -9,7 +9,7 @@ namespace Assets.Scripts.Utils
 {
     public static class MusicReader
     {
-        private const float TIME_MULTIPLIER = 5.5f;
+        private const float TIME_MULTIPLIER = 5f;
 
         public static IEnumerable<Note> Read(string xmlContent)
         {

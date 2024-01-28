@@ -17,16 +17,21 @@ namespace Assets.Scripts.Controllers
         [SerializeField]
         private GameObject NoteObject;
 
+        private GameController GameController;
+
         private float y;
         private float StartTime;
+        private int zIndex = -2;
 
         private IEnumerable<Note> notes = new List<Note>();
 
         void Start()
         {
             y = transform.position.y;
+            GameController = gameObject.GetComponentInParent<GameController>();
 
-            notes = Helpers.NormalizeJSONPitch(MusicReader.Read(TrackXML.text));
+            XMLData xMLData = TrackManager.instance.GetXMLData();
+            notes = Helpers.NormalizeJSONPitch(MusicReader.Read(xMLData.xmlFile.text));
 
             StartTime = Time.time;
 
@@ -37,12 +42,12 @@ namespace Assets.Scripts.Controllers
         {
             Instantiate(
                 NoteObject,
-                new Vector2(x, y),
+                new Vector3(x, y, zIndex),
                 transform.rotation);
 
             Instantiate(
                 NoteObject,
-                new Vector2(-x, y),
+                new Vector3(-x, y, zIndex),
                 transform.rotation);
         }
 
@@ -58,6 +63,10 @@ namespace Assets.Scripts.Controllers
 
                 Generate(note.Pitch);
             }
+
+            yield return new WaitForSeconds(1f);
+
+            GameController.GameOver();
         }
     }
 }

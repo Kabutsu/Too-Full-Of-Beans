@@ -1,3 +1,4 @@
+using Assets.Scripts.Controllers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +17,11 @@ namespace Assets.Scripts.Utils
         public void OnMoveRightStick(InputValue value)
         {
             moveRightStick = value.Get<Vector2>();
+        }
+
+        public void OnMenu(InputValue value)
+        {
+            FindObjectOfType<GameController>().LoadMenu();
         }
     }
 }
