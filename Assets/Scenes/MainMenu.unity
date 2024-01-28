@@ -496,6 +496,7 @@ MonoBehaviour:
   - {fileID: 806546817}
   StandardButtonColor: {r: 0.6627451, g: 0.79607844, b: 0.8117647, a: 0.7019608}
   HighlightedButtonColor: {r: 0.3372549, g: 0.76862746, b: 0.8039216, a: 1}
+  xmlData: {fileID: 0}
 --- !u!114 &282787963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1199,6 +1200,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673879259}
   m_CullTransparentMesh: 1
+--- !u!1 &746303182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 746303184}
+  - component: {fileID: 746303183}
+  m_Layer: 0
+  m_Name: TrackManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &746303183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746303182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74d9f0b42ec24e4c99fa69f512643db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xmlData: {fileID: 0}
+--- !u!4 &746303184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746303182}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1101.5436, y: 657.532, z: 10575.518}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &774152949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,6 +1257,7 @@ GameObject:
   - component: {fileID: 774152953}
   - component: {fileID: 774152952}
   - component: {fileID: 774152951}
+  - component: {fileID: 774152954}
   m_Layer: 5
   m_Name: AmazingGrace
   m_TagString: Untagged
@@ -1320,6 +1367,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 774152949}
   m_CullTransparentMesh: 1
+--- !u!114 &774152954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774152949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d0e39beea2caf4cae050729fa74092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Track: {fileID: 11400000, guid: 72898fb7d28a7b84aa8b3489e704045d, type: 2}
 --- !u!1 &806546815
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,6 +1392,7 @@ GameObject:
   - component: {fileID: 806546819}
   - component: {fileID: 806546818}
   - component: {fileID: 806546817}
+  - component: {fileID: 806546820}
   m_Layer: 5
   m_Name: HarryPotter
   m_TagString: Untagged
@@ -1441,6 +1502,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806546815}
   m_CullTransparentMesh: 1
+--- !u!114 &806546820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806546815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d0e39beea2caf4cae050729fa74092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Track: {fileID: 11400000, guid: 3dca41899347bb742acfca74f58bda43, type: 2}
 --- !u!1 &876901519
 GameObject:
   m_ObjectHideFlags: 0
@@ -2912,3 +2986,4 @@ SceneRoots:
   - {fileID: 282787960}
   - {fileID: 1737473160}
   - {fileID: 1364024306874043791}
+  - {fileID: 746303184}

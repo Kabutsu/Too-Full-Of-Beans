@@ -30,7 +30,8 @@ namespace Assets.Scripts.Controllers
             y = transform.position.y;
             GameController = gameObject.GetComponentInParent<GameController>();
 
-            notes = Helpers.NormalizeJSONPitch(MusicReader.Read(TrackXML.text));
+            XMLData xMLData = TrackManager.instance.GetXMLData();
+            notes = Helpers.NormalizeJSONPitch(MusicReader.Read(xMLData.xmlFile.text));
 
             StartTime = Time.time;
 

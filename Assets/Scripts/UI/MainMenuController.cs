@@ -13,6 +13,8 @@ public class MainMenuController : MonoBehaviour
     public Color StandardButtonColor;
     public Color HighlightedButtonColor;
 
+    public XMLData xmlData;
+
     private void Start()
     {
         foreach(var button in buttonList)
@@ -21,6 +23,8 @@ public class MainMenuController : MonoBehaviour
         }
 
         SetColor(buttonList[SelectedTrackId], HighlightedButtonColor);
+
+        TrackManager.instance.SetXMLData(buttonList[SelectedTrackId].GetComponent<MenuButtonManager>().Track);
     }
 
     public void SelectButton(ControllerDirection direction)
@@ -43,6 +47,8 @@ public class MainMenuController : MonoBehaviour
                 SetColor(buttonList[SelectedTrackId], HighlightedButtonColor);
             }
         }
+
+        TrackManager.instance.SetXMLData(buttonList[SelectedTrackId].GetComponent<MenuButtonManager>().Track);
     }
 
     private void SetColor(Button button, Color color)
