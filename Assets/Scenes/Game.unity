@@ -205,6 +205,7 @@ MonoBehaviour:
   MaxLeftAbs: 1.5
   MaxRightAbs: 7.5
   GameOverObject: {fileID: 200497491}
+  BackgroundImage: {fileID: 350878555}
 --- !u!4 &104391456
 Transform:
   m_ObjectHideFlags: 0

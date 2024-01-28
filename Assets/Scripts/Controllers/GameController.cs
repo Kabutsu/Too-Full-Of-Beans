@@ -27,6 +27,9 @@ namespace Assets.Scripts.Controllers
         [SerializeField]
         private GameObject GameOverObject;
 
+        [SerializeField]
+        private Image BackgroundImage;
+
         private Tuple<PlayerController, PlayerController> _players;
         private NoteGenerator _noteGenerator;
         private InputControlsInputs _input;
@@ -34,6 +37,9 @@ namespace Assets.Scripts.Controllers
         private void Start()
         {
             Application.targetFrameRate = -1;
+
+            XMLData xmlData = TrackManager.instance.GetXMLData();
+            BackgroundImage.sprite = xmlData.imageFile;
 
             _players = new Tuple<PlayerController, PlayerController>(
                 PlayerOne.GetComponent<PlayerController>(),

@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TrackManager : MonoBehaviour
 {
     public static TrackManager instance;
 
     public XMLData xmlData;
+    public Image backgroundImage;
 
     private void Awake()
     {

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: HarryPotter
   m_EditorClassIdentifier: 
   xmlFile: {fileID: 4900000, guid: d80a4c5443ed86246bb95ba231fca51f, type: 3}
+  imageFile: {fileID: 21300000, guid: 5dfb682dd47f22e4f981662a47a14431, type: 3}

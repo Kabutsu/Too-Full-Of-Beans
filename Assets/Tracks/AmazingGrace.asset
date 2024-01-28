@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: AmazingGrace
   m_EditorClassIdentifier: 
   xmlFile: {fileID: 4900000, guid: 09511ef3c73e6dd4189f1a15a356e932, type: 3}
+  imageFile: {fileID: 21300000, guid: 9e443b4c8a6368c42864d9364474af97, type: 3}

@@ -4,6 +4,7 @@ using UnityEngine;
 public class XMLData : ScriptableObject
 {
     public TextAsset xmlFile; // You can store the XML file as a TextAsset
+    public Sprite imageFile;
 
     private void OnEnable()
     {
