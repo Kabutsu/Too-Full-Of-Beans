@@ -17,6 +17,8 @@ namespace Assets.Scripts.Controllers
         [SerializeField]
         private GameObject NoteObject;
 
+        private GameController GameController;
+
         private float y;
         private float StartTime;
         private int zIndex = -2;
@@ -26,6 +28,7 @@ namespace Assets.Scripts.Controllers
         void Start()
         {
             y = transform.position.y;
+            GameController = gameObject.GetComponentInParent<GameController>();
 
             notes = Helpers.NormalizeJSONPitch(MusicReader.Read(TrackXML.text));
 
@@ -59,6 +62,10 @@ namespace Assets.Scripts.Controllers
 
                 Generate(note.Pitch);
             }
+
+            yield return new WaitForSeconds(1f);
+
+            GameController.GameOver();
         }
     }
 }

@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using Assets.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Controllers
 {
@@ -21,6 +23,9 @@ namespace Assets.Scripts.Controllers
         private float MaxLeftAbs = 1.5f;
         [SerializeField]
         private float MaxRightAbs = 7.5f;
+
+        [SerializeField]
+        private GameObject GameOverObject;
 
         private Tuple<PlayerController, PlayerController> _players;
         private NoteGenerator _noteGenerator;
@@ -65,6 +70,12 @@ namespace Assets.Scripts.Controllers
         public void OnRightTrigger(InputValue value)
         {
             _players.Item2.Trigger(value.isPressed);
+        }
+
+        public void GameOver()
+        {
+            GameOverObject.GetComponent<Image>().enabled = true;
+            GameOverObject.GetComponent<Image>().CrossFadeAlpha(0.7f, 1.5f, true);
         }
     }
 }
